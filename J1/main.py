@@ -1,4 +1,7 @@
 from database import complete_task,add_task, show_task
+from files import organize_downloads as org
+org(r"C:\Users\as\Desktop\New")
+
 print("JARVIS ready. Type 'help' for commands.")
 while True:
 	
