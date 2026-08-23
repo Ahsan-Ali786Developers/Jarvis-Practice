@@ -1,16 +1,16 @@
 from database import complete_task,add_task, show_task,delete_task,add_notes,show_notes
 from files import organize_downloads,create_folder	
 from datetime import datetime as dt
-import os
-import psutil
-
+import os, psutil
+from logger import log_command as log
 
 print("JARVIS ready. Type 'help' for commands.")
 while True:
 	now = dt.now()
 	cho = input("Enter your choice : ").lower()
+	log(cho)
 	if cho=="help":
-		print('''complete task\tadd_task\tshow_task\tshut\texit''')
+		print('''1. complete task\t2. add_task\t3. show_task\t4. shutdown/turn off\t5. system/status\t6. search google\t7. greeting\t8. date\t9. time \t10. delete_task\t11. add_notes\t12. show_notes\t13. create_folder\t14. organ\rize_folder\t 15. lock \t16. restart\t17. open app\t18. exit''')
 	elif cho in ['system','status']:
 		disk = psutil.disk_usage('/')
 		print(f"Disk usage: {disk.percent}\n total:{disk.total}\nfree {disk.free}\n")
@@ -29,7 +29,6 @@ while True:
 			print("Good afternoon, Ahsan")
 		else:
 			print("Good evening,Ahsan")
-		
 	elif cho=="exit":
 		print("Your are exitting from the jarvis.\nTake care of your self.")
 		break
@@ -49,22 +48,24 @@ while True:
 	elif cho in ['lock']:
 		print("Your system is locking..")
 		os.system("rundll32.exe user32.dll,LockWorkStation")
-
 	elif cho in ['restart', 'refresh','re']:
 		confirm = input("Are you sure you want to restart? (yes/no) : ").lower()	
 		if confirm == 'yes':
 			print("Your pc is restarting...")
-			os.system("shutdown /r /t 5")
-			break
+			os.system("shutdown /r /t 240")
+			conn = input("Do you want to cancel? ").lower()
+			if conn == 'yes':
+				os.system("shutdown /a")
+			elif conn == 'no':
+				print("Your pc is restarting...")	
 		if confirm=='no':
 			print("You cancelled the restarting of your system.")
-			
 	elif cho in ["shutdown", 'shut down']:
 		confirm = input("Are you sure you want to shut down? (yes/no) : ").lower()
 		if confirm == 'yes':
 			print("Shutting down. Good bye ,Ahsan.")
-			os.system("shutdown /s /t 5")
-			break 
+			os.system("shutdown /s /t 20")
+			
 		else:
 			print("Shutdown Cancelled.")
 	elif cho in ['open']:
@@ -75,7 +76,6 @@ while True:
 		elif app in ['calc','calculator']:
 			print("Calculator is opening...")
 			os.system("calc")
-	
 		elif app in ['chrome']:
 			print("Chrome is opening...")
 			os.system('start chrome')
@@ -94,6 +94,6 @@ while True:
 		text = input("Enter your text for notes : ")
 		add_notes(text)
 	elif cho in ['notes']:
-		show_notes()		
+		show_notes()
 	else:
 		print("unknow command. type 'help' for knowing the yet available commands.")
