@@ -9,7 +9,10 @@ def organize_downloads(path):
 		".mp3": "Audio",
 		".jpg": "Images",
 		".jpeg": "Images",
-		".mp4": "Videos"
+		".mp4": "Videos",
+		".inp": "Inpage",
+		".py": "Python",
+		".bat": "Batch",
 	}
 	files = os.listdir(path)
 	for filename in files:
