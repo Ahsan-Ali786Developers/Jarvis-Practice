@@ -1,4 +1,4 @@
-from database import complete_task,add_task, show_task
+from database import complete_task,add_task, show_task,delete_task,add_notes,show_notes
 from files import organize_downloads,create_folder	
 from datetime import datetime as dt
 import os
@@ -87,5 +87,13 @@ while True:
 	elif cho in ["complete_task", "Task", 'complete']:
 		id = int(input("Enter id of task : "))
 		complete_task(id)
+	elif cho in ['delete', 'delete_task']:
+		id = int(input("Enter id of task : "))
+		delete_task(id)
+	elif cho in ['remember']:
+		text = input("Enter your text for notes : ")
+		add_notes(text)
+	elif cho in ['notes']:
+		show_notes()		
 	else:
 		print("unknow command. type 'help' for knowing the yet available commands.")
