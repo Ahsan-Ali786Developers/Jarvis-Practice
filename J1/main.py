@@ -58,27 +58,52 @@ while True:
 				os.system("shutdown /a")
 			elif conn == 'no':
 				print("Your pc is restarting...")	
-		if confirm=='no':
+		elif confirm=='no':
 			print("You cancelled the restarting of your system.")
 	elif cho in ["shutdown", 'shut down']:
 		confirm = input("Are you sure you want to shut down? (yes/no) : ").lower()
 		if confirm == 'yes':
 			print("Shutting down. Good bye ,Ahsan.")
-			os.system("shutdown /s /t 20")
-			
-		else:
-			print("Shutdown Cancelled.")
+			os.system("shutdown /s /t 240")
+			conn = input("Do you want to cancel? ").lower()
+			if conn == 'yes':
+				os.system("shutdown /a")
+			elif conn == 'no':
+				print("Your pc is shuting down...")	
+		elif confirm=='no':
+			print("You cancelled the shut down of your system.")
+					
 	elif cho in ['open']:
 		app = input("Which app?")
-		if app in ['notepad']:
-			print("Notepad is opening...")
-			os.system('notepad')
-		elif app in ['calc','calculator']:
-			print("Calculator is opening...")
-			os.system("calc")
-		elif app in ['chrome']:
-			print("Chrome is opening...")
-			os.system('start chrome')
+		apps = {
+			"notepad": "notepad",
+			"calc": "calc",
+			"calculator": "calc",
+			"chrome" : "start chrome",
+			"vscode": "code",
+			"code":"code",
+			"word": "start winword",
+			"excel": "start excel",
+			"powerpoint":"start powerpnt",
+			"explorer": "explorer",
+			"files":"explorer",
+			"cmd":"start cmd",
+			"terminal":"start cmd",
+			"paint": "mspaint",
+			"task manager": "taskmgr",
+			"control panel":"control",
+			"settings":"start ms-settings:",
+			"whatsapp": "start whatsapp",
+			"spotify": "start spotify",
+			"camera":"start microsoft.windows.camera:",
+			"wordpad":"write"
+			}
+		if app in apps:
+			os.system(apps[app])
+			print(f"{apps[app]} is opening...")
+		else:
+			print("App not found.")
+
 	elif cho in ['add', 'add_task']:
 		t=input("Enter your task : ")
 		add_task(t)
