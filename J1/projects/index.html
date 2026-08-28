@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#174a45">
+  <meta name="description" content="Offline court desk for legal paperwork">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>Briefly | Court desk</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark">B</div>
+      <div><div class="brand-name">Briefly</div><div class="brand-subtitle">Your court desk, lighter.</div></div>
+      <button class="icon-button" id="installButton" aria-label="Install app" title="Install app">↓</button>
+    </header>
+
+    <section class="hero">
+      <div><p class="eyebrow">TODAY'S DESK</p><h1>Ready when the<br><em>court calls.</em></h1><p class="hero-copy">Draft applications, calculate stamps, and keep every client close at hand.</p></div>
+      <div class="hero-seal">OFFLINE<br><span>FIRST</span></div>
+    </section>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-view="home">Desk</button><button class="tab" data-view="clients">Clients</button><button class="tab" data-view="templates">Templates</button>
+    </nav>
+
+    <section id="homeView" class="view active-view">
+      <div class="section-heading"><div><p class="eyebrow">QUICK WORK</p><h2>Make something useful</h2></div><span class="count-pill" id="clientCount">0 clients</span></div>
+      <div class="action-grid"><button class="action-card teal" data-open="application"><span class="action-icon">✎</span><strong>New application</strong><small>Start from a proven format</small></button><button class="action-card gold" data-open="stamp"><span class="action-icon">₹</span><strong>Calculate stamp</strong><small>Get the amount in seconds</small></button></div>
+      <div class="section-heading recent-heading"><div><p class="eyebrow">YOUR QUEUE</p><h2>Recent matters</h2></div><button class="text-button" data-view="clients">See all</button></div>
+      <div id="recentList" class="matter-list"></div>
+    </section>
+
+    <section id="clientsView" class="view"><div class="section-heading"><div><p class="eyebrow">PEOPLE</p><h2>Clients</h2></div><button class="primary-button" id="addClientButton">+ Add</button></div><div id="clientList" class="client-list"></div></section>
+
+    <section id="templatesView" class="view"><div class="section-heading"><div><p class="eyebrow">REUSABLE FORMATS</p><h2>Templates</h2></div></div><div class="template-list"><button class="template-row" data-open="application" data-template="adjournment"><span class="template-icon">A</span><span><strong>Adjournment application</strong><small>Request more time for a hearing</small></span><span>›</span></button><button class="template-row" data-open="application" data-template="certified"><span class="template-icon">C</span><span><strong>Certified copy request</strong><small>Apply for a certified court copy</small></span><span>›</span></button><button class="template-row" data-open="application" data-template="bail"><span class="template-icon">B</span><span><strong>Bail application</strong><small>Basic regular bail format</small></span><span>›</span></button></div></section>
+
+    <div class="bottom-note"><span class="status-dot"></span>Saved on this device <button id="clearData">Clear demo data</button></div>
+  </main>
+
+  <dialog id="applicationDialog"><form method="dialog" id="applicationForm"><div class="dialog-head"><div><p class="eyebrow">DRAFT APPLICATION</p><h2>New application</h2></div><button class="close-button" value="cancel">×</button></div><label>Application type<select id="applicationType"><option value="adjournment">Adjournment application</option><option value="certified">Certified copy request</option><option value="bail">Bail application</option></select></label><label>Client name<input id="applicationClient" required placeholder="e.g. Ayesha Khan"></label><label>Case number<input id="applicationCase" placeholder="e.g. 124/2026"></label><label>Short reason<textarea id="applicationReason" rows="3" placeholder="What does the court need to know?"></textarea></label><div class="form-actions"><button class="secondary-button" value="cancel">Cancel</button><button class="primary-button" id="saveApplication" value="default">Save draft</button></div></form></dialog>
+
+  <dialog id="stampDialog"><form method="dialog" id="stampForm"><div class="dialog-head"><div><p class="eyebrow">QUICK CALCULATOR</p><h2>Stamp estimate</h2></div><button class="close-button" value="cancel">×</button></div><label>Document type<select id="stampType"><option value="application">General application</option><option value="affidavit">Affidavit</option><option value="agreement">Agreement</option><option value="copy">Copy request</option></select></label><label>State / region<input id="stampRegion" placeholder="e.g. Delhi"></label><label>Number of pages<input id="stampPages" type="number" min="1" value="1"></label><div class="estimate"><span>Estimated stamp value</span><strong id="stampResult">₹ 10</strong><small>Confirm the current local schedule before filing.</small></div><div class="form-actions"><button class="secondary-button" value="cancel">Close</button><button class="primary-button" id="saveStamp" value="default">Save to desk</button></div></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

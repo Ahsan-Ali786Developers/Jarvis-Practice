@@ -25,6 +25,6 @@ echo ======================
 echo Access granted. Initializing JARVIS...
 echo ======================
 
-start "" py "main.py"
+start  py main.py
 
 exit

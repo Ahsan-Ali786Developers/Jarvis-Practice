@@ -3,6 +3,7 @@ from files import organize_downloads,create_folder
 from datetime import datetime as dt
 import os, psutil
 from logger import log_command as log
+from income import add_income, show_today_income, show_all_income,today_profit
 
 print("JARVIS ready. Type 'help' for commands.")
 while True:
@@ -10,7 +11,7 @@ while True:
 	cho = input("Enter your choice : ").lower()
 	log(cho)
 	if cho=="help":
-		print('''1. complete task\t2. add_task\t3. show_task\t4. shutdown/turn off\t5. system/status\t6. search google\t7. greeting\t8. date\t9. time \t10. delete_task\t11. add_notes\t12. show_notes\t13. create_folder\t14. organ\rize_folder\t 15. lock \t16. restart\t17. open app\t18. exit''')
+		print('''1. complete task\t2. add_task\t3. show_task\t4. shutdown/turn off\t5. system/status\t6. search google\t7. greeting\t8. date\t9. time \t10. delete_task\t11. add_notes\t12. show_notes\t13. create_folder\t14. organ\rize_folder\t 15. lock \t16. restart\t17. open app\t18. add_income\t19. show_today_income \t20. show_all_income\t21. exit''')
 	elif cho in ['system','status']:
 		disk = psutil.disk_usage('/')
 		print(f"Disk usage: {disk.percent}\n total:{disk.total}\nfree {disk.free}\n")
@@ -93,8 +94,7 @@ while True:
 			"task manager": "taskmgr",
 			"control panel":"control",
 			"settings":"start ms-settings:",
-			"whatsapp": "start whatsapp",
-			"spotify": "start spotify",
+			"whatsapp": "start https://web.whatsapp.com/",
 			"camera":"start microsoft.windows.camera:",
 			"wordpad":"write"
 			}
@@ -120,5 +120,15 @@ while True:
 		add_notes(text)
 	elif cho in ['notes']:
 		show_notes()
+	elif cho in ['add_income','income','new income','add income','add-income']:
+		stamp = int(input("Enter the stamp price(e.g. 100) : "))
+		price = int(input("Enter the charged price : "))
+		add_income(stamp,price)
+	elif cho in ['today_income','today']:
+		show_today_income()
+	elif cho in ['show_all_income','total_income','total income']:
+		show_all_income()
+	elif cho in ['profit','today profit','today-profit']:
+		today_profit()
 	else:
 		print("unknow command. type 'help' for knowing the yet available commands.")
