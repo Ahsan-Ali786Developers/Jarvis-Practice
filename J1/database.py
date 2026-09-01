@@ -19,6 +19,9 @@ def complete_task(task_id):
 def delete_task(task_id):
 	cr.execute("Delete from tasks where id = ?",(task_id,))
 	c.commit()
+def get_all_tasks():
+	cr.execute("Select * from tasks")
+	return cr.fetchall()
 def add_notes(text):
 	cr.execute('insert into notes (content) values (?)',(text,))
 	c.commit()
@@ -27,3 +30,6 @@ def show_notes():
 	tex = text.fetchall()
 	for te in tex:
 		print(te[0],te[1])
+def get_all_notes():
+	cr.execute("Select * from notes")
+	return cr.fetchall()
